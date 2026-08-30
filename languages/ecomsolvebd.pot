@@ -1,0 +1,48 @@
+# Copyright (C) 2026 EcomSolveBD
+# This file is distributed under the same license as the EcomSolveBD plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: EcomSolveBD 1.0.53\n"
+"Report-Msgid-Bugs-To: https://ecomsolvebd.com/contact\n"
+"POT-Creation-Date: 2026-08-13 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: ecomsolvebd\n"
+
+msgid "EcomSolveBD"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Product Feed Generator"
+msgstr ""
+
+msgid "Product Feed"
+msgstr ""
+
+msgid "Save settings"
+msgstr ""
+
+msgid "Connected — API reachable and Merchant ID is valid."
+msgstr ""
+
+msgid "Forbidden."
+msgstr ""
+
+msgid "DNS verified — subdomain ingest active"
+msgstr ""
+
+msgid "Not verified yet — verify in EcomSolveBD dashboard"
+msgstr ""
+
+msgid "Status (from EcomSolveBD)"
+msgstr ""
+
+msgid "Open Integrations →"
+msgstr ""

@@ -1,0 +1,299 @@
+/* First-party tracking — parity with SaaS Shopify/Laravel/Next panel (img2). */
+
+.ecomso-admin-wrap .ecomso-card {
+  max-width: 960px;
+  margin: 16px 0 24px;
+  padding: 20px 22px 22px;
+  background: #fff;
+  border: 1px solid #e8e3da;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.ecomso-admin-wrap .ecomso-card--fp {
+  border-color: #e8e3da;
+}
+
+.ecomso-admin-wrap .ecomso-card__title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1c1917;
+}
+
+.ecomso-admin-wrap .ecomso-card__lead {
+  margin: 8px 0 0;
+  max-width: 42rem;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #6f675e;
+}
+
+.ecomso-fp-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9a8f84;
+}
+
+.ecomso-fp-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.ecomso-fp-field--prefix {
+  width: 8.5rem;
+  flex-shrink: 0;
+}
+
+.ecomso-fp-field--full {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.ecomso-fp-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #e6e1d8;
+  border-radius: 8px;
+  background: #fbfaf7;
+  color: #2a2622;
+  font-size: 13px;
+  box-shadow: none;
+  outline: none;
+}
+
+.ecomso-fp-input:focus {
+  border-color: rgba(31, 107, 74, 0.7);
+  box-shadow: 0 0 0 2px rgba(31, 107, 74, 0.15);
+}
+
+.ecomso-fp-input:disabled,
+.ecomso-fp-input[readonly] {
+  opacity: 0.85;
+  cursor: default;
+}
+
+.ecomso-fp-input--mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: #5c564e;
+}
+
+.ecomso-fp-actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.ecomso-btn-forest {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 8px;
+  background: #1f6b4a;
+  color: #fff !important;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  text-decoration: none;
+}
+
+.ecomso-btn-forest:hover,
+.ecomso-btn-forest:focus {
+  background: #185a3e;
+  color: #fff !important;
+}
+
+.ecomso-btn-forest:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ecomso-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #e6e1d8;
+  border-radius: 8px;
+  background: #fff;
+  color: #6f675e;
+  cursor: pointer;
+}
+
+.ecomso-btn-ghost:hover {
+  background: #f7f5f2;
+}
+
+.ecomso-btn-ghost--danger:hover {
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.ecomso-dns-panel {
+  margin-top: 18px;
+  padding: 16px;
+  background: #fbfaf7;
+  border: 1px solid #e8e3da;
+  border-radius: 12px;
+}
+
+.ecomso-dns-panel__title {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2a2622;
+}
+
+.ecomso-dns-grid {
+  overflow: hidden;
+  border: 1px solid #ebe6dd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ecomso-dns-grid__head,
+.ecomso-dns-grid__body {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, auto) minmax(0, 1.25fr) minmax(0, 1.1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 10px 12px;
+}
+
+.ecomso-dns-grid__head {
+  background: #f7f5f2;
+  border-bottom: 1px solid #ebe6dd;
+}
+
+.ecomso-dns-grid__head-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9a8f84;
+}
+
+.ecomso-dns-copy-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #1f6b4a;
+  cursor: pointer;
+}
+
+.ecomso-dns-copy-icon:hover {
+  background: #e8f5ef;
+}
+
+.ecomso-dns-type {
+  display: inline-flex;
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #f0ebe3;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #5c564e;
+}
+
+.ecomso-dns-mono {
+  min-width: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  word-break: break-all;
+  color: #2a2622;
+}
+
+.ecomso-dns-hint {
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6f675e;
+}
+
+.ecomso-dns-hint strong {
+  color: #2a2622;
+}
+
+.ecomso-dns-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.ecomso-dns-status-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ecomso-dns-status-inline.is-pending {
+  color: #e11d48;
+}
+
+.ecomso-dns-status-inline.is-verified {
+  color: #1f6b4a;
+}
+
+.ecomso-dns-status-inline__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ecomso-dns-guide-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f766e;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ecomso-dns-guide-link:hover {
+  color: #0d9488;
+}
+
+@media (max-width: 782px) {
+  .ecomso-fp-field--prefix {
+    width: 100%;
+  }
+
+  .ecomso-dns-grid__head,
+  .ecomso-dns-grid__body {
+    grid-template-columns: 1fr;
+  }
+}

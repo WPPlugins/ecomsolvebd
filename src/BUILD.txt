@@ -1,0 +1,11 @@
+EcomSolveBD WordPress plugin — browser tracker source
+
+Runtime file: assets/js/ecomsolvebd.js (minified IIFE for storefront).
+Readable source: src/tracker/ (same code used to build the bundle).
+Build tool config: src/esbuild.config.mjs
+
+To rebuild from this monorepo (not required for end users):
+  npm run tracker:sync
+
+That runs esbuild on tracker/src and copies dist + this src tree into the plugin.
+Do not edit assets/js/ecomsolvebd.js by hand — edit src/tracker/ then sync.
