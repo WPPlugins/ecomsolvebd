@@ -2,9 +2,9 @@
 Contributors: ecomsolvebd
 Tags: woocommerce, analytics, attribution, tracking, utm
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.64
+Stable tag: 1.0.66
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,12 @@ Terms: https://ecomsolvebd.com/terms
 * Other storefront scripts (`ecomso-runtime.js`, `ecomso-wc-bridge.js`) ship unminified
 
 == Changelog ==
+
+= 1.0.66 =
+* WordPress.org: banner crop fix; Version header sync.
+
+= 1.0.65 =
+* readme: Tested up to WordPress 7.1 (compatibility notice fix).
 
 = 1.0.64 =
 * WordPress.org: plugin banner assets; Tested up to 6.8.
