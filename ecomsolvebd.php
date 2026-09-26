@@ -3,7 +3,7 @@
  * Plugin Name:       EcomSolveBD
  * Plugin URI:        https://ecomsolvebd.com
  * Description:       First-party analytics and attribution for EcomSolveBD — UTM, click IDs, sessions, WooCommerce events.
- * Version:           1.0.66
+ * Version:           1.0.67
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            EcomSolveBD
@@ -18,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'ECOMSO_VERSION', '1.0.66' );
+define( 'ECOMSO_VERSION', '1.0.67' );
 
 /** Kept for BC with older snippets; storefront console debug is always off. */
 if ( ! defined( 'ECOMSO_WC_TEST' ) ) {

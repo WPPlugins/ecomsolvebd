@@ -4,7 +4,7 @@ Tags: woocommerce, analytics, attribution, tracking, utm
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.66
+Stable tag: 1.0.67
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,9 @@ Terms: https://ecomsolvebd.com/terms
 * Other storefront scripts (`ecomso-runtime.js`, `ecomso-wc-bridge.js`) ship unminified
 
 == Changelog ==
+
+= 1.0.67 =
+* EcomSolveBD catalog feed (`/feed/products.xml`): optional sku, description, and variants_note for SaaS / Inbox AI (Meta, TikTok, and Google channel feeds unchanged).
 
 = 1.0.66 =
 * WordPress.org: banner crop fix; Version header sync.
@@ -252,6 +255,9 @@ Terms: https://ecomsolvebd.com/terms
 * Rebrand to EcomSolveBD Tracker.
 
 == Upgrade Notice ==
+
+= 1.0.67 =
+Richer SaaS catalog feed fields only. Tracking and Meta/TikTok/Google feeds unchanged — safe overwrite.
 
 = 1.0.61 =
 First-party DNS UI removed from WP admin (use EcomSolveBD dashboard). Status still syncs. Safe overwrite.

@@ -20,7 +20,7 @@ final class ECOMSO_Feed {
 		'products' => array(
 			'path'  => '/feed/products.xml',
 			'label' => 'EcomSolveBD catalog',
-			'hint'  => 'SaaS product sync — id/title/price/image/stock for EcomSolveBD catalog.',
+			'hint'  => 'SaaS product sync — id/title/price/image/stock/description for EcomSolveBD catalog + Inbox AI.',
 		),
 		'facebook' => array(
 			'path'  => '/feed/facebook.xml',
@@ -169,6 +169,13 @@ final class ECOMSO_Feed {
 				$stock_fields = self::product_stock_fields( $p );
 				$terms        = wp_get_post_terms( (int) $p->get_id(), 'product_cat', array( 'fields' => 'names' ) );
 				$cat          = ( is_wp_error( $terms ) || empty( $terms ) ) ? '' : implode( ', ', array_map( 'strval', $terms ) );
+				$sku          = (string) $p->get_sku();
+				$raw_desc     = (string) $p->get_short_description();
+				if ( $raw_desc === '' ) {
+					$raw_desc = (string) $p->get_description();
+				}
+				$description   = self::xml_safe_text( wp_strip_all_tags( $raw_desc ), 8000 );
+				$variants_note = self::product_variants_note( $p );
 
 				$out .= "  <product>\n";
 				$out .= '    <id>' . esc_html( $id ) . "</id>\n";
@@ -177,6 +184,15 @@ final class ECOMSO_Feed {
 				$out .= '    <currency>' . esc_html( $currency ) . "</currency>\n";
 				$out .= '    <category>' . esc_html( $cat ) . "</category>\n";
 				$out .= '    <image>' . esc_html( (string) $img ) . "</image>\n";
+				if ( $sku !== '' ) {
+					$out .= '    <sku>' . esc_html( $sku ) . "</sku>\n";
+				}
+				if ( $description !== '' ) {
+					$out .= '    <description>' . esc_html( $description ) . "</description>\n";
+				}
+				if ( $variants_note !== '' ) {
+					$out .= '    <variants_note>' . esc_html( $variants_note ) . "</variants_note>\n";
+				}
 				$out .= '    <stock>' . esc_html( $stock_fields['status'] ) . "</stock>\n";
 				$out .= '    <stock_qty>' . esc_html( $stock_fields['qty'] ) . "</stock_qty>\n";
 				$out .= "  </product>\n";
@@ -434,6 +450,59 @@ final class ECOMSO_Feed {
 			return false;
 		}
 		return strlen( $u ) <= 2000;
+	}
+
+	/**
+	 * Parent product attributes for Inbox AI (Size/Color/…). Empty when none — never invent.
+	 * SaaS ingest only (`products.xml`); channel feeds untouched.
+	 *
+	 * @param WC_Product $p
+	 */
+	private static function product_variants_note( $p ): string {
+		if ( ! $p instanceof WC_Product ) {
+			return '';
+		}
+		$attrs = $p->get_attributes();
+		if ( empty( $attrs ) || ! is_array( $attrs ) ) {
+			return '';
+		}
+		$parts = array();
+		foreach ( $attrs as $attr ) {
+			if ( ! is_a( $attr, 'WC_Product_Attribute' ) ) {
+				continue;
+			}
+			$opts = array();
+			if ( $attr->is_taxonomy() ) {
+				$tax   = $attr->get_name();
+				$label = function_exists( 'wc_attribute_label' ) ? wc_attribute_label( $tax ) : $tax;
+				$terms = wc_get_product_terms( (int) $p->get_id(), $tax, array( 'fields' => 'names' ) );
+				if ( ! is_wp_error( $terms ) && is_array( $terms ) ) {
+					$opts = $terms;
+				}
+			} else {
+				$label = (string) $attr->get_name();
+				$opts  = $attr->get_options();
+			}
+			$opts = array_values(
+				array_filter(
+					array_map(
+						static function ( $o ) {
+							return trim( (string) $o );
+						},
+						(array) $opts
+					)
+				)
+			);
+			$label = trim( (string) $label );
+			if ( $label === '' || empty( $opts ) ) {
+				continue;
+			}
+			$parts[] = $label . ': ' . implode( ', ', $opts );
+		}
+		if ( empty( $parts ) ) {
+			return '';
+		}
+		return self::xml_safe_text( implode( ' | ', $parts ), 4000 );
 	}
 
 	/**
