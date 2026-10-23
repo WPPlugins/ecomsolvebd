@@ -4,7 +4,7 @@ Tags: woocommerce, analytics, attribution, tracking, utm
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.67
+Stable tag: 1.0.69
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,12 @@ Terms: https://ecomsolvebd.com/terms
 * Other storefront scripts (`ecomso-runtime.js`, `ecomso-wc-bridge.js`) ship unminified
 
 == Changelog ==
+
+= 1.0.69 =
+* Checkout: first and last name fields send the typed name to EcomSolveBD so Checkout drop-off (abandon recovery) shows the buyer's name. The name is stored only in EcomSolveBD and is not sent to ad platforms.
+
+= 1.0.68 =
+* EcomSolveBD catalog feed (`/feed/products.xml`) includes each product permalink in `<product_url>`. Facebook, TikTok, and Google catalog feeds are unchanged.
 
 = 1.0.67 =
 * EcomSolveBD catalog feed (`/feed/products.xml`): optional sku, description, and variants_note for SaaS / Inbox AI (Meta, TikTok, and Google channel feeds unchanged).

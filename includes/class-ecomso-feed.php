@@ -170,6 +170,7 @@ final class ECOMSO_Feed {
 				$terms        = wp_get_post_terms( (int) $p->get_id(), 'product_cat', array( 'fields' => 'names' ) );
 				$cat          = ( is_wp_error( $terms ) || empty( $terms ) ) ? '' : implode( ', ', array_map( 'strval', $terms ) );
 				$sku          = (string) $p->get_sku();
+				$permalink    = (string) $p->get_permalink();
 				$raw_desc     = (string) $p->get_short_description();
 				if ( $raw_desc === '' ) {
 					$raw_desc = (string) $p->get_description();
@@ -186,6 +187,9 @@ final class ECOMSO_Feed {
 				$out .= '    <image>' . esc_html( (string) $img ) . "</image>\n";
 				if ( $sku !== '' ) {
 					$out .= '    <sku>' . esc_html( $sku ) . "</sku>\n";
+				}
+				if ( $permalink !== '' ) {
+					$out .= '    <product_url>' . esc_html( $permalink ) . "</product_url>\n";
 				}
 				if ( $description !== '' ) {
 					$out .= '    <description>' . esc_html( $description ) . "</description>\n";

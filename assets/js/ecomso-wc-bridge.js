@@ -2489,6 +2489,9 @@
         geo: geoHint,
         phone: fieldName === "billing_phone" ? v : undefined,
         email: fieldName === "billing_email" ? v : undefined,
+        // Real name → Checkout drop-off "Customer" (server-only; not forwarded to GA4/ads).
+        name: fieldName === "billing_first_name" ? v : undefined,
+        last_name: fieldName === "billing_last_name" ? v : undefined,
       });
       markAbandonState();
       emitCompletedIfReady();
