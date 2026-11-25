@@ -4,7 +4,7 @@ Tags: woocommerce, analytics, attribution, tracking, utm
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.69
+Stable tag: 1.0.70
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ EcomSolveBD connects your WordPress / WooCommerce store to [EcomSolveBD](https:/
 * Optional first-party tracking hostname (CNAME) to reduce ad-blocker impact
 * Optional Google Analytics 4 Measurement ID (standard gtag.js automatic events only)
 * Product feed URLs for EcomSolveBD catalog, Meta, TikTok, and Google Merchant Center
+* Optional Checkout Shield (when enabled for your store in EcomSolveBD): courier delivery-rate check and SMS code verification at checkout, plus a repeat-order timer
 
 This plugin is a client for the EcomSolveBD service (SaaS). You need a free or paid EcomSolveBD account and a Tracking Merchant ID from your dashboard. All plugin code is free under GPLv2 or later; EcomSolveBD account features are provided by the service.
 
@@ -29,6 +30,7 @@ This plugin is a client for the EcomSolveBD service (SaaS). You need a free or p
 After you save a valid Merchant ID, the plugin communicates with external services. No data is sent until you connect.
 
 * **EcomSolveBD API** (`https://api.ecomsolvebd.com`) — validates your Merchant ID, syncs configuration, receives tracking and order-related events, provisions first-party collect hostnames, and powers reporting in your dashboard. Sent when you save settings, test connection, verify DNS, sync orders, or when storefront visitors trigger tracking. Terms: https://ecomsolvebd.com/terms — Privacy: https://ecomsolvebd.com/privacy
+* **EcomSolveBD Checkout Shield** (`https://api.ecomsolvebd.com/api/v1/checkout-shield/public/…`) — only when Checkout Shield is enabled for your store: on the checkout page the buyer's phone number is sent to check courier delivery history and, if required, to send and verify an SMS code; when the order is placed, your server sends the phone number, your site host and the buyer's IP address to confirm the order may be saved. Terms: https://ecomsolvebd.com/terms — Privacy: https://ecomsolvebd.com/privacy
 
 * **Your first-party tracking subdomain** (optional CNAME you configure) — after DNS verification, browser collect requests may go to your own subdomain (for example `tracking.yourstore.com`) instead of the API host. Sent only when tracking runs on your storefront.
 
@@ -93,6 +95,11 @@ Terms: https://ecomsolvebd.com/terms
 * Other storefront scripts (`ecomso-runtime.js`, `ecomso-wc-bridge.js`) ship unminified
 
 == Changelog ==
+
+= 1.0.70 =
+* New: Checkout Shield for WooCommerce (classic checkout and the Checkout block). When EcomSolveBD enables it for your store, the checkout asks for an SMS code from buyers whose courier delivery rate is below your limit, and can stop repeat orders from the same phone for a set time. Off by default; nothing changes until it is enabled.
+* The order is never blocked by a slow or unavailable EcomSolveBD service: the check usually answers in under a second, waits at most 8 seconds, and then lets the order through.
+* The checkout script (assets/js/ecomso-checkout-shield.js) loads only on the checkout page. Readable source: src/checkout-shield/.
 
 = 1.0.69 =
 * Checkout: first and last name fields send the typed name to EcomSolveBD so Checkout drop-off (abandon recovery) shows the buyer's name. The name is stored only in EcomSolveBD and is not sent to ad platforms.

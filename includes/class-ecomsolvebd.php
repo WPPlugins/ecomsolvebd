@@ -71,6 +71,16 @@ final class EcomSolveBD_Tracker {
 		if ( class_exists( 'ECOMSO_WC' ) ) {
 			ECOMSO_WC::init();
 		}
+		// Checkout Shield (fraud check + SMS OTP). Inert unless EcomSolveBD turns it on for this store.
+		if ( ! class_exists( 'ECOMSO_Checkout_Shield', false ) ) {
+			$shield = ECOMSO_DIR . 'includes/class-ecomso-checkout-shield.php';
+			if ( is_readable( $shield ) ) {
+				require_once $shield;
+			}
+		}
+		if ( class_exists( 'ECOMSO_Checkout_Shield' ) ) {
+			ECOMSO_Checkout_Shield::init();
+		}
 	}
 
 	public function register_admin_notices(): void {
