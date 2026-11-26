@@ -22,8 +22,16 @@ final class ECOMSO_Version {
 			return;
 		}
 		if ( class_exists( 'ECOMSO_Feed' ) ) {
-			ECOMSO_Feed::register_rewrite();
-			flush_rewrite_rules( false );
+			// `plugins_loaded` runs before WordPress creates $wp_rewrite — adding rules here is a fatal error
+			// ("add_rule() on null"). Register + flush on `init` instead, after the feed rules are added.
+			add_action(
+				'init',
+				static function () {
+					ECOMSO_Feed::register_rewrite();
+					flush_rewrite_rules( false );
+				},
+				99
+			);
 		}
 		if ( class_exists( 'ECOMSO_Cache' ) ) {
 			ECOMSO_Cache::bust_storefront();

@@ -54,11 +54,16 @@ function isCheckoutForm(form) {
 function findPhone(root) {
   const scope = root && root.querySelectorAll ? root : document;
   const inputs = scope.querySelectorAll("input");
-  for (let i = 0; i < inputs.length; i++) {
-    const el = inputs[i];
-    if (!isPhoneInput(el)) continue;
-    const p = validBdPhone(el.value);
-    if (p) return p;
+  // Visible fields first: builders such as FunnelKit keep a hidden JSON copy of the phone that can be stale
+  // until the field blurs. A hidden field is used only when the form has no visible phone at all.
+  for (const hiddenPass of [false, true]) {
+    for (let i = 0; i < inputs.length; i++) {
+      const el = inputs[i];
+      if ((el.type === "hidden") !== hiddenPass) continue;
+      if (!isPhoneInput(el)) continue;
+      const p = validBdPhone(el.value);
+      if (p) return p;
+    }
   }
   return null;
 }

@@ -4,7 +4,7 @@ Tags: woocommerce, analytics, attribution, tracking, utm
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.70
+Stable tag: 1.0.72
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,7 @@ This plugin is a client for the EcomSolveBD service (SaaS). You need a free or p
 
 After you save a valid Merchant ID, the plugin communicates with external services. No data is sent until you connect.
 
-* **EcomSolveBD API** (`https://api.ecomsolvebd.com`) — validates your Merchant ID, syncs configuration, receives tracking and order-related events, provisions first-party collect hostnames, and powers reporting in your dashboard. Sent when you save settings, test connection, verify DNS, sync orders, or when storefront visitors trigger tracking. Terms: https://ecomsolvebd.com/terms — Privacy: https://ecomsolvebd.com/privacy
+* **EcomSolveBD API** (`https://api.ecomsolvebd.com`) — validates your Merchant ID, syncs configuration, receives tracking and order-related events, provisions first-party collect hostnames, and powers reporting in your dashboard. Sent when you save settings, test connection, verify DNS, sync orders, or when storefront visitors trigger tracking. On checkout pages this includes what the shopper types into the checkout form (name, phone, email, delivery address, district / thana, postcode, order note and other visible checkout fields — never passwords, card numbers or security codes), sent once a phone number or email is entered, so the store owner can follow up a dropped checkout. Terms: https://ecomsolvebd.com/terms — Privacy: https://ecomsolvebd.com/privacy
 * **EcomSolveBD Checkout Shield** (`https://api.ecomsolvebd.com/api/v1/checkout-shield/public/…`) — only when Checkout Shield is enabled for your store: on the checkout page the buyer's phone number is sent to check courier delivery history and, if required, to send and verify an SMS code; when the order is placed, your server sends the phone number, your site host and the buyer's IP address to confirm the order may be saved. Terms: https://ecomsolvebd.com/terms — Privacy: https://ecomsolvebd.com/privacy
 
 * **Your first-party tracking subdomain** (optional CNAME you configure) — after DNS verification, browser collect requests may go to your own subdomain (for example `tracking.yourstore.com`) instead of the API host. Sent only when tracking runs on your storefront.
@@ -95,6 +95,15 @@ Terms: https://ecomsolvebd.com/terms
 * Other storefront scripts (`ecomso-runtime.js`, `ecomso-wc-bridge.js`) ship unminified
 
 == Changelog ==
+
+= 1.0.72 =
+* New: Checkout Drop now keeps the whole checkout form the shopper filled in — full delivery address, district, thana / area, postcode, order note and the store's own extra fields — not only name and phone. Works on the classic checkout, the Checkout block, CartFlows, FunnelKit and CheckoutWC. In the EcomSolveBD dashboard, "Place order" on a dropped checkout then opens the order form already filled in.
+* Privacy: passwords, card numbers, security / OTP codes, coupons and hidden fields are never read. The form is sent only after the shopper typed a phone number or email, and only to your EcomSolveBD account (never to ad platforms).
+* Includes the 1.0.71 Checkout Shield phone-field fix.
+* Fix: right after a plugin update, the first page load could stop with a fatal error ("add_rule() on null") because product-feed URLs were registered too early. They are now registered when WordPress is ready.
+
+= 1.0.71 =
+* Fix: Checkout Shield now reads the visible phone field first. Some checkout builders (for example FunnelKit) keep a hidden copy of the phone that can be out of date for a moment; the hidden copy is used only when the form has no visible phone field.
 
 = 1.0.70 =
 * New: Checkout Shield for WooCommerce (classic checkout and the Checkout block). When EcomSolveBD enables it for your store, the checkout asks for an SMS code from buyers whose courier delivery rate is below your limit, and can stop repeat orders from the same phone for a set time. Off by default; nothing changes until it is enabled.
@@ -268,6 +277,9 @@ Terms: https://ecomsolvebd.com/terms
 * Rebrand to EcomSolveBD Tracker.
 
 == Upgrade Notice ==
+
+= 1.0.72 =
+Checkout Drop keeps the full checkout form (address, district, thana, note) for one-click "Place order". Safe overwrite.
 
 = 1.0.67 =
 Richer SaaS catalog feed fields only. Tracking and Meta/TikTok/Google feeds unchanged — safe overwrite.
